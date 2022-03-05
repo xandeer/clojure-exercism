@@ -21,3 +21,10 @@
        seq
        (map #(* (score-letter (first %)) (second %)))
        (apply +)))
+
+(defn score-word [w]
+  (->> w
+       frequencies
+       (map (fn [[k v]]
+               (* (score-letter k) v)))
+       (apply +)))
