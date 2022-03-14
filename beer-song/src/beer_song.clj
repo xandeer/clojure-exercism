@@ -21,7 +21,7 @@ Take one down and pass it around, %d bottles of beer on the wall.\n"
    :buysome "Go to the store and buy some more, 99 bottles of beer on the wall.\n"})
 
 (def bottles
-  {0 "No more bottles"
+  {0 "no more bottles"
    1 "1 bottle"
    'n "%d bottles"})
 
@@ -33,18 +33,18 @@ Take one down and pass it around, %d bottles of beer on the wall.\n"
 
 (defn howmany [n]
   (format (:howmany sentences)
-          (bottle-s n)
-          (clojure.string/lower-case (bottle-s n))))
+          (clojure.string/capitalize (bottle-s n))
+          (bottle-s n)))
 
 (defmulti verse identity)
 
 (defmethod verse 0 [n]
-  (str (howmany n)
+  (str (howmany 0)
        (:buysome sentences)))
 
 (defmethod verse 1 [n]
-  (str (howmany n)
-       (takeone "it" (bottle-s n))))
+  (str (howmany 1)
+       (takeone "it" 1)))
 
 (defmethod verse :default [n]
   (str (howmany n)
