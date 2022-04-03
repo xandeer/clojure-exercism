@@ -12,9 +12,8 @@
 
 (defn allergies [score]
   (->> items
-       (map-indexed (fn [idx itm]
-                      (when (bit-test score idx) itm)))
-       (remove nil?)))
+       (keep-indexed (fn [idx itm]
+                       (when (bit-test score idx) itm)))))
 
 (defn allergic-to? [score item]
   (->> (allergies score)
